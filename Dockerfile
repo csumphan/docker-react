@@ -19,6 +19,8 @@ RUN npm run build
 #Run phase use nginx, copy build files, start nginx
 # any block can only have one FROM, so the build phase stops befor run phase
 FROM nginx
+#for beanstalk, when it start ur docker container it looks for expose instruction
+EXPOSE 80 
 # copys something from diff phase
 COPY --from=builder /app/build /usr/share/nginx/html
 
