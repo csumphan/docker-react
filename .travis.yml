@@ -1,0 +1,10 @@
+sudo: required # whenever we use docker we need super user permission
+services:
+  - docker # install docker
+
+before_install: # things to do before running test or deploy to prod ie build docker image
+    # this tag will only be used in the travis pipeline
+  - docker build -t csumphan/docker-react -f Dockerfile.dev . # give this a tag, since we won't be able to use the image id later
+
+script: # all commands to run test suite
+  - docker run -e CI=true csumphan/docker-react npm run test
