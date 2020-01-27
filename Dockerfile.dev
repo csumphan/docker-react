@@ -1,0 +1,33 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
+
+
+# Docker volumes is kind of a reference in ur docker container to the file back on ur machine
+# important to use volumes if ur source code is changing
+
+# Setting up volumes
+# docker run -p 3000:3000 -v ${pwd}:/app <image_id>
+
+# -c /app/node_modules: Put a bookmark on the node_modules folder
+
+# -v $(pwd):/app <image_id> Map the pwd into the /app folder
+# -v create the volumes
+# $(pwd) is a shortcut to present worder directory
+# :/app is access the folder in pwd
+# when we use the : we want to map a folder inside to container, with something outside
+# -v /app does not need colon as it is inside the container
+
+#${pwd}:/app - anytime container try to access something in app directory, get it from the pwd on local
+
+
+ # docker run -it <image_id> npm run test - use this to run test or use another other commands in container
+ # docker exec -it c7203feca4c8 npm run test - execute a command inside a running container
+ # docker attach - attaches to the stdin stdout stderr of the primary process in that container
