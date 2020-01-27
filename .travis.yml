@@ -18,9 +18,8 @@ deploy:
   bucket_path: "docker-react"
   on:
     branch: master # deploy only on master
-  access_key_id: "$AWS_ACCESS_KEY"
-  secret_access_key:
-    secure: "$AWS_SECRET_KEY" # get env variable from travis ci
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
 
 
 # need to set up IAM in AWS for travis access
